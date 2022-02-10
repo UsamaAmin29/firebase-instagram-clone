@@ -3,7 +3,23 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  firebase: {
+    projectId: 'bingorum-dc061',
+    appId: '1:707735308234:web:6164a311718d1e3dfa3133',
+    storageBucket: 'bingorum-dc061.appspot.com',
+    apiKey: 'AIzaSyDFEA5DyYws_Maz6-J5-pOknGrpWS2Ehko',
+    authDomain: 'bingorum-dc061.firebaseapp.com',
+    messagingSenderId: '707735308234',
+  },
+  production: false,
+  firebaseConfig : {
+    apiKey: "AIzaSyDFEA5DyYws_Maz6-J5-pOknGrpWS2Ehko",
+    authDomain: "bingorum-dc061.firebaseapp.com",
+    projectId: "bingorum-dc061",
+    storageBucket: "bingorum-dc061.appspot.com",
+    messagingSenderId: "707735308234",
+    appId: "1:707735308234:web:6164a311718d1e3dfa3133"
+  }
 };
 
 /*

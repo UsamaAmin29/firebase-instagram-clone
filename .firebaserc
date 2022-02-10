@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "bingorum-dc061": {
+      "hosting": {
+        "Bingorum": [
+          "bingorum-dc061"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "bingorum-dc061"
+  }
+}

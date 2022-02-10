@@ -1,0 +1,31 @@
+<link href="https://fonts.googleapis.com/css?family=Rokkitt" rel="stylesheet"> 
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="mx-auto my-3" style="width: fit-content;">
+<!-- nav itm  -->
+<div class="card gedf-card">
+    <div class="card-body">
+        <div class="tab-content" id="myTabContent">
+            <div class="form-group">
+                <label class="sr-only" for="message">post</label>
+                <textarea class="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Upload image</label>
+                </div>
+            </div>
+        </div>
+        <div class="btn-toolbar justify-content-between">
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary">share</button>
+            </div>           
+        </div>
+    </div>
+</div>
+<!-- Post /////-->
+<div class="my-3">
+<app-single-feed *ngFor="let i of [1,2,3,4,5]"></app-single-feed>
+
+</div>
+</div>

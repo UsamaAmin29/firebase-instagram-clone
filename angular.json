@@ -103,8 +103,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "Bingorum:build:production",
+            "firebaseProject": "bingorum-dc061",
+            "firebaseHostingSite": "bingorum-dc061"
+          }
         }
       }
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "skipTests": true
     }
   },
   "defaultProject": "Bingorum"
