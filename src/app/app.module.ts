@@ -22,6 +22,8 @@ import { FeedsComponent } from './feeds/feeds.component';
 import { AuthService } from './shared/services/auth.service';
 import { SingleFeedComponent } from './Components/single-feed/single-feed.component';
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
+import { OtherUsersComponent } from './Components/other-users/other-users.component';
+import { EditProfileComponent } from './Components/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { UserProfileComponent } from './Components/user-profile/user-profile.com
     FeedsComponent,
     UserProfileComponent,
     SingleFeedComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    OtherUsersComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
