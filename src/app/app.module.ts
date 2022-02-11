@@ -21,6 +21,7 @@ import { VerifyEmailComponent } from './Auth/verify-email/verify-email.component
 import { FeedsComponent } from './feeds/feeds.component';
 import { AuthService } from './shared/services/auth.service';
 import { SingleFeedComponent } from './Components/single-feed/single-feed.component';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { SingleFeedComponent } from './Components/single-feed/single-feed.compon
     ResetComponent,
     VerifyEmailComponent,
     FeedsComponent,
-    SingleFeedComponent
+    UserProfileComponent,
+    SingleFeedComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
