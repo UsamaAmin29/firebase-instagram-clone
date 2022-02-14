@@ -1,21 +1,24 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Inject, Injectable, NgZone } from '@angular/core';
 import { User } from "../services/user";
-
+import {Auth} from 'firebase/auth';
 import { AngularFireAuth} from "@angular/fire/compat/auth";
 import { AngularFirestore, AngularFirestoreDocument } from "@angular/fire/compat/firestore";
 
 import { Router } from "@angular/router";
 import { AuthProvider, GoogleAuthProvider } from 'firebase/auth';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   userData: any; // Save logged in user data
+  // Auth: any;
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,  
-    public ngZone: NgZone // NgZone service to remove outside scope warning
+    public ngZone: NgZone, // NgZone service to remove outside scope warning
+    // public Auth: Auth,
   ) {    
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -57,11 +60,10 @@ export class AuthService {
   }
   // Send email verfificaiton when new user sign up
   SendVerificationMail() {
-    return ""
-    // return "" this.afAuth.user.sendEmailVerification()
-    // .then(() => {
-    //   this.router.navigate(['verify-email-address']);
-    // })
+    return this.afAuth.currentUser.then((u:any) => u.sendEmailVerification())
+    .then(() => {
+      this.router.navigate(['verify-email']);
+    })
   }
   // Reset Forggot password
   ForgotPassword(passwordResetEmail : string) {

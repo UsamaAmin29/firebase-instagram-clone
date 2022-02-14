@@ -24,6 +24,7 @@ import { SingleFeedComponent } from './Components/single-feed/single-feed.compon
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 import { OtherUsersComponent } from './Components/other-users/other-users.component';
 import { EditProfileComponent } from './Components/edit-profile/edit-profile.component';
+import { AuthGuardComponent } from './Auth/auth-guard/auth-guard.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { EditProfileComponent } from './Components/edit-profile/edit-profile.com
     SingleFeedComponent,
     UserProfileComponent,
     OtherUsersComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    AuthGuardComponent
   ],
   imports: [
     BrowserModule,
