@@ -11,7 +11,8 @@ import { AuthProvider, GoogleAuthProvider } from 'firebase/auth';
   providedIn: 'root'
 })
 export class AuthService {
-  userData: any; // Save logged in user data
+  public userData: any; // Save logged in user data
+  public userProfile: any; // Save logged in user data
   // Auth: any;
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -40,6 +41,7 @@ export class AuthService {
         this.ngZone.run(() => {
           this.router.navigate(['dashboard']);
         });
+
         this.SetUserData(result.user);
       }).catch((error) => {
         window.alert(error.message)
@@ -58,6 +60,14 @@ export class AuthService {
         window.alert(error.message)
       })
   }
+  
+  LoadFunction(result:any) {
+  this.afs.doc(`users/${result.user?.uid}`).ref.get().then( (data) => {
+      this.userProfile = data.data();
+  });}
+  // this.LoadFuntion(result.user);
+
+  
   // Send email verfificaiton when new user sign up
   SendVerificationMail() {
     return this.afAuth.currentUser.then((u:any) => u.sendEmailVerification())
@@ -74,11 +84,16 @@ export class AuthService {
       window.alert(error)
     })
   }
+
+  // get isLoggedIn(): boolean {
+  //   const user = JSON.parse(localStorage.getItem('user'));
+  //   return (user !== null && user.emailVerified !== false) ? true : false;
+  // }
  
   
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user') || '');
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
     return (user !== null && user.emailVerified !== false) ? true : false;
   }
   // Sign in with Google
@@ -91,8 +106,16 @@ export class AuthService {
     .then((result) => {
        this.ngZone.run(() => {
           this.router.navigate(['feeds']);
-        })
+        });
       this.SetUserData(result.user);
+
+      this.afs.doc(`users/${result.user?.uid}`).ref.get().then( (data) => {
+          this.userProfile = data.data();
+      });
+
+
+
+      this.userProfile
     }).catch((error) => {
       window.alert(error)
     })
@@ -107,12 +130,27 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified
+      emailVerified: user.emailVerified,
     }
     return userRef.set(userData, {
       merge: true
     })
   }
+
+
+  EditUserData(name:string, displayName:string = "",phone:string= "") {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userData.uid}`);
+    const userData: User = {
+      uid: this.userData.uid,
+      // displayName: displayName,
+      fullName: name,
+      // phoneNumber: phone
+    }
+    return userRef.set(userData, {
+      merge: true
+    })
+  }
+
   // Sign out 
   SignOut() {
     return this.afAuth.signOut().then(() => {
