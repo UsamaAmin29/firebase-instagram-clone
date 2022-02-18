@@ -1,41 +1,142 @@
-<link href="https://fonts.googleapis.com/css?family=Rokkitt" rel="stylesheet"> 
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="navbar navfar " >
-    <a href="#"><i class="fa fa-instagram bisc" ></i><span class="mini"></span></a>
+<!-- <i class="fa fa-instagram" aria-hidden="true"></i> -->
+<div class="dashboard-header">
+    <nav class="navbar navbar-expand-lg bg-white navbar-fixed-top"> <a class="navbar-brand " href="#"><i class="fab fa-instagram mr-4"> INSTAGRAM</i></a>  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto navbar-right-top">
+                <li class="nav-item ">
+                    <div id="custom-search" class="top-search-bar"> <input class="form-control" type="text" placeholder="Search.."> </div>
+                </li>
+                <li ngbDropdown  class="nav-item dropdown notification"> <a ngbDropdownToggle class="nav-link nav-icons"  id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
+                    <ul ngbDropdownMenu  class="dropdown-menu dropdown-menu-right notification-dropdown">
+                        <li>
+                            <div  ngbDropdownItem class="notification-title"> Notification</div>
+                            <div  class="notification-list">
+                                <div class="list-group"> <a href="#" class="list-group-item list-group-item-action active">
+                                        <div class="notification-info">
+                                            <div class="notification-list-user-img"><img src="https://img.icons8.com/office/100/000000/administrator-female.png" alt="" class="user-avatar-md rounded-circle"></div>
+                                            <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Hukonah</span>accepted your invitation to join the team. <div class="notification-date">2 min ago</div>
+                                            </div>
+                                        </div>
+                                    </a> <a href="#" class="list-group-item list-group-item-action">
+                                        <div class="notification-info">
+                                            <div class="notification-list-user-img"><img src="https://img.icons8.com/color/48/000000/administrator-female.png" alt="" class="user-avatar-md rounded-circle"></div>
+                                            <div class="notification-list-user-block"><span class="notification-list-user-name">John Sammy</span>updated the email address <div class="notification-date">2 days ago</div>
+                                            </div>
+                                        </div>
+                                    </a> <a href="#" class="list-group-item list-group-item-action">
+                                        <div class="notification-info">
+                                            <div class="notification-list-user-img"><img src="https://img.icons8.com/color/100/000000/name.png" alt="" class="user-avatar-md rounded-circle"></div>
+                                            <div class="notification-list-user-block"><span class="notification-list-user-name">Kioh Samso</span> is watching your main repository <div class="notification-date">2 min ago</div>
+                                            </div>
+                                        </div>
+                                    </a> </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-footer"> <a href="#">View all notifications</a></div>
+                        </li>
+                    </ul>
+                </li>
+                <li ngbDropdown class="nav-item dropdown connection"> 
+                    <a ngbDropdownToggle class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                    <i class="fas fa-fw fa-th"></i> 
+                    </a>
+                  <ul ngbDropdownMenu  class="dropdown-menu dropdown-menu-right connection-dropdown">
+                    <li class="connection-list" ngbDropdownItem>
+                      <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 " > 
+                            <a href="#"
+                            class="connection-item">
+                            <img src="https://img.icons8.com/nolan/100/000000/github.png"
+                              alt="">
+                               <span>Github</span>
+                            </a>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 " > 
+                            <a href="#"
+                            class="connection-item">
+                            <img src="https://img.icons8.com/color/100/000000/dribbble.png"
+                              alt="">
+                               <span>Dribbble</span>
+                            </a>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 " > 
+                            <a href="#"
+                            class="connection-item">
+                            <img src="https://img.icons8.com/color/100/000000/dropbox.png" alt="">
+                               <span>Dropbox</span>
+                            </a>
+                        </div>
+                      </div>
+                     <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 " ngbDropdownItem> 
+                            <a href="#"
+                            class="connection-item">
+                            <img src="https://img.icons8.com/color/100/000000/bitbucket.png" alt=""> 
+                              <span>Bitbucket</span>
+                            </a>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 " ngbDropdownItem> 
+                            <a href="#"
+                            class="connection-item">
+                            <img src="https://img.icons8.com/color/100/000000/remove-ads.png" alt=""><span>Facebook ads</span></a>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 " ngbDropdownItem> 
+                            <a href="#"
+                            class="connection-item">
+                            <img src="https://img.icons8.com/wired/64/000000/slack.png" alt="">
+                            <span>Slack</span>
+                        </a>
+                        </div>
+                      </div>
+                    </li>
+                    <li ngbDropdownItem>
+                      <div class="conntection-footer"><a href="#">More</a></div>
+                    </li>
+                  </ul>
+                </li>
+                <li ngbDropdown  class="nav-item dropdown nav-user"> <a ngbDropdownToggle class="nav-link nav-user-img"  id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://img.icons8.com/dusk/100/000000/user-female-circle.png" alt="" class="user-avatar-md rounded-circle"></a>
+                    <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                        <div class="nav-user-info">
+                            <h5  class="mb-0 text-white nav-user-name">Tikoha Samga</h5> <span class="status"></span><span class="ml-2">Available</span>
+                        </div> <a class="dropdown-item" href="/user-profile"><i class="fas fa-user mr-2"></i>Account</a> <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a> <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </div>
 <div class="mx-auto my-3" style="width: fit-content; ">
-<!-- nav itm  -->
+  <!-- nav itm  -->
 
-<div class="card gedf-card"  >
+  <div class="card gedf-card">
     <div class="card-body">
-        <div class="tab-content" id="myTabContent">
-            <div class="form-group">
-                <label class="sr-only" for="message">post</label>
-                <textarea class="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
-            </div>
-            <div class="form-group">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Upload image</label>
-                </div>
-            </div>
+      <div class="tab-content" id="myTabContent">
+        <div class="form-group">
+          <label class="sr-only" for="message">post</label>
+          <textarea class="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
         </div>
-        <div class="btn-toolbar justify-content-between">
-            <div class="btn-group">
-                <button type="submit" class="btn btn-primary">share</button>
-            </div> 
-            <div class="btn-group">
-               <a href="/user-profile"   type="submit" class="btn btn-primary ">Profile</a>
-            </div>             
+        <div class="form-group">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Upload image</label>
+          </div>
         </div>
+      </div>
+      <div class="btn-toolbar justify-content-between">
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary">share</button>
+        </div>
+        <div class="btn-group">
+          <a href="/user-profile" type="submit" class="btn btn-primary ">Profile</a>
+        </div>
+      </div>
     </div>
-</div>
-<!-- Post /////-->
-<!-- <div class="my-3"></div>
+  </div>
+  <!-- Post /////-->
+  <!-- <div class="my-3"></div>
 <app-other-users *ngFor="let i of [1,2,3,4,5]"></app-other-users> -->
-<div class="my-3">
-<app-single-feed *ngFor="let i of [1,2,3,4,5]"></app-single-feed>
+  <div class="my-3">
+    <app-single-feed *ngFor="let i of [1,2,3,4,5]"></app-single-feed>
 
-</div>
-
-
+  </div>

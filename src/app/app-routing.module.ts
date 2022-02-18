@@ -17,9 +17,9 @@ const routes: Routes = [
   { path: 'register-user', component: SignupComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
   { path: 'feeds', component: FeedsComponent, canActivate: [AuthGuard] },
-  { path: 'user-profile', component: UserProfileComponent},
-  { path: 'other-users', component: OtherUsersComponent},
-  { path: 'edit-profile', component: EditProfileComponent}
+  { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard]},
+  { path: 'other-users', component: OtherUsersComponent, canActivate: [AuthGuard]},
+  { path: 'edit-profile', component: EditProfileComponent, canActivate: [AuthGuard]}
   
 ];
 
