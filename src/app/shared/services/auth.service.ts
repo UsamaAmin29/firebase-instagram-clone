@@ -6,6 +6,9 @@ import { AngularFirestore, AngularFirestoreDocument } from "@angular/fire/compat
 
 import { Router } from "@angular/router";
 import { AuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { VerifyEmailComponent } from 'src/app/Auth/verify-email/verify-email.component';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { user } from 'rxfire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +28,11 @@ export class AuthService {
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe(user => {
       if (user) {
+
         this.userData = user;
+        this.afs.doc(`users/${user?.uid}`).ref.get().then((data) => { 
+          this.userProfile = data.data();
+        });
         localStorage.setItem('user', JSON.stringify(this.userData));
           JSON.parse(localStorage.getItem('user') || '');
       } else {
@@ -34,18 +41,29 @@ export class AuthService {
       }
     })
   }
+
+  LoadFunction(result:any) {
+    this.afs.doc(`users/${result.user?.uid}`).ref.get().then( (data) => {
+        this.userProfile = data.data();
+       
+    });}
+
   // Sign in with email/password
   SignIn(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
           this.router.navigate(['dashboard']);
+         
         });
-
-        this.SetUserData(result.user);
+        this.SetUserData(result.user);        
+        this.afs.doc(`users/${result.user?.uid}`).ref.get().then((data) => { 
+          this.userProfile = data.data();
+        });
       }).catch((error) => {
-        window.alert(error.message)
+        window.alert(error.message)        
       })
+      
   }
   // Sign up with email/password
   SignUp(email: string, password: string) {
@@ -61,11 +79,8 @@ export class AuthService {
       })
   }
   
-  LoadFunction(result:any) {
-  this.afs.doc(`users/${result.user?.uid}`).ref.get().then( (data) => {
-      this.userProfile = data.data();
-  });}
-  // this.LoadFuntion(result.user);
+  
+  // 
 
   
   // Send email verfificaiton when new user sign up
@@ -104,26 +119,31 @@ export class AuthService {
   AuthLogin(provider: AuthProvider) {
     return this.afAuth.signInWithPopup(provider)
     .then((result) => {
-       this.ngZone.run(() => {
+       this.ngZone.run(() => {          
           this.router.navigate(['feeds']);
         });
-      this.SetUserData(result.user);
-
-      this.afs.doc(`users/${result.user?.uid}`).ref.get().then( (data) => {
-          this.userProfile = data.data();
+      this.SetUserData(result.user);   
+      this.afs.doc(`users/${result.user?.uid}`).ref.get().then((data) => { 
+        this.userProfile = data.data();
       });
-
-
-
-      this.userProfile
     }).catch((error) => {
       window.alert(error)
     })
   }
+  // SetUserProfile(user:any){
+  //   const userRef:AngularFirestoreDocument<any>= this.afs.doc(`users/${user.address}`);
+  //   const userData: User ={
+  //     address:user.address,
+  //   }
+  //   return userRef/set(this.userProfile,{
+  //     merg:true
+  //   }) 
+  // }
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
   SetUserData(user :any) {
+    
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userData: User = {
       uid: user.uid,
@@ -132,23 +152,23 @@ export class AuthService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
     }
-    return userRef.set(userData, {
+    
+    userRef.set(userData, {
       merge: true
-    })
+    });
   }
 
 
-  EditUserData(name:string, displayName:string = "",phone:string= "") {
+  EditUserData(name:string, displayName:string,phone:string, address:string) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userData.uid}`);
-    const userData: User = {
-      uid: this.userData.uid,
-      // displayName: displayName,
-      fullName: name,
-      // phoneNumber: phone
-    }
-    return userRef.set(userData, {
+    this.userProfile.fullName = name;
+    this.userProfile.displayName = displayName;
+    this.userProfile.phoneNumber = phone;
+    this.userProfile.address =  address;
+    return userRef.set( this.userProfile, {
       merge: true
     })
+    
   }
 
   // Sign out 
@@ -156,6 +176,7 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['sign-in']);
+   
     })
   }
 }
